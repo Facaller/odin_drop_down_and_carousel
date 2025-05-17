@@ -1,3 +1,9 @@
+window.addEventListener('load', () => {
+    const menu = document.getElementById('menuId');
+    menu.classList.remove('no-transition');
+});
+
+
 export function showDropDown(burgerId, menuId) {
     const burger = document.getElementById(burgerId);
     const menu = document.getElementById(menuId);
@@ -8,6 +14,6 @@ export function showDropDown(burgerId, menuId) {
     }
     
     burger.addEventListener('click', () => {
-        menu.classList.toggle('hidden');
+        menu.classList.toggle('show');
     });
 }

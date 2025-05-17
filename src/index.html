@@ -4,10 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dropdown & Carousel</title>
+    <style>
+        .drop-down-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+    </style>
 </head>
 <body>
     <div id="burgerId" class="drop-down-burger">
-        <div id="menuId" class="drop-down-menu hidden">
+        <div id="menuId" class="drop-down-menu no-transition">
             <button>Edit</button>
             <button>Copy</button>
             <button>Delete</button>
