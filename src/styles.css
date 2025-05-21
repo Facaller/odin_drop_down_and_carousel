@@ -86,13 +86,14 @@ img {
     margin: 4px;
     border: 5px solid black;
     border-radius: 5px;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 .arrow {
     justify-self: center;
     align-self: center;
     font-size: 2em;
+    z-index: 2;
 }
 
 .arrow:hover {
