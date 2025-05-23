@@ -6,6 +6,7 @@ export class Carousel {
         this.slideWidth = 800;
 
         this.slides     = document.querySelectorAll('.slide');
+        this.dots       = document.querySelectorAll('.dot');
         this.wrapper    = document.querySelector('.slide-wrapper');
         this.rightArrow = document.querySelector('.right-arrow');
         this.leftArrow  = document.querySelector('.left-arrow');
@@ -18,6 +19,9 @@ export class Carousel {
         this.showCurrentSlide();
         this.rightArrowClick();
         this.leftArrowClick();
+        this.dotClickListener();
+        this.updateActiveDot();
+        this.slideTimer();
     }
 
     setSlideIndex () {
@@ -27,6 +31,50 @@ export class Carousel {
         slides.forEach(slide => {
             slideArray.push(slide);
         });
+    }
+
+    setDotIndex () {
+        const dots = this.dots;
+        const slideArray = this.slideArray;
+
+        dots.forEach((dot, i) => {
+            dot = i;
+        });
+    }
+
+    dotClickListener() {
+        const dotContainer = document.querySelector('.nav-dots');
+        
+        dotContainer.addEventListener('click', (event) => {
+            if (event.target.classList.contains('dot')) {
+                const clickedDot = event.target;
+                const dotIndex = Array.from(this.dots).indexOf(clickedDot);
+        
+                if (dotIndex !== -1) {
+                    this.slideIndex = dotIndex;
+                    this.showCurrentSlide();
+                }
+            }
+            this.updateActiveDot();
+        });
+    }
+
+    updateActiveDot() {
+        this.dots.forEach(dot => dot.classList.remove('selected'));
+        this.dots[this.slideIndex].classList.add('selected');      
+    }
+
+    slideTimer () {
+        setInterval(() => {
+            if (this.slideIndex >= this.slideArray.length - 1) {
+                this.slideIndex = 0;
+            } else {
+                this.slideIndex++;
+            }
+            this.showCurrentSlide();
+            this.updateActiveDot();
+            console.log(this.slideIndex);
+        }, 5000);
     }
 
     showCurrentSlide () {
@@ -47,6 +95,7 @@ export class Carousel {
                 this.slideIndex--;
             }
             this.showCurrentSlide();
+            this.updateActiveDot();
         });
     }
 
@@ -60,6 +109,9 @@ export class Carousel {
                 this.slideIndex++;
             }
             this.showCurrentSlide();
+            this.updateActiveDot();
         });
     }
+
+
 }
