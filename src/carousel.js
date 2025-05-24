@@ -4,6 +4,7 @@ export class Carousel {
         this.slideArray = [];
         this.slideIndex = 0;
         this.slideWidth = 800;
+        this.intervalID
 
         this.slides     = document.querySelectorAll('.slide');
         this.dots       = document.querySelectorAll('.dot');
@@ -56,6 +57,8 @@ export class Carousel {
                 }
             }
             this.updateActiveDot();
+            this.clearTimer();
+            this.slideTimer();
         });
     }
 
@@ -65,7 +68,7 @@ export class Carousel {
     }
 
     slideTimer () {
-        setInterval(() => {
+        this.intervalID = setInterval(() => {
             if (this.slideIndex >= this.slideArray.length - 1) {
                 this.slideIndex = 0;
             } else {
@@ -75,6 +78,10 @@ export class Carousel {
             this.updateActiveDot();
             console.log(this.slideIndex);
         }, 5000);
+    }
+
+    clearTimer () {
+        clearInterval(this.intervalID);
     }
 
     showCurrentSlide () {
@@ -96,6 +103,8 @@ export class Carousel {
             }
             this.showCurrentSlide();
             this.updateActiveDot();
+            this.clearTimer();
+            this.slideTimer();
         });
     }
 
@@ -110,8 +119,8 @@ export class Carousel {
             }
             this.showCurrentSlide();
             this.updateActiveDot();
+            this.clearTimer();
+            this.slideTimer();
         });
     }
-
-
 }
